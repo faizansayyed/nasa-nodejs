@@ -13,7 +13,7 @@ const PORT = process.env.PORT || 8080;
 const server = http.createServer(app);
 
 config({ path: __dirname + '/server/.env' });
-connectDB();
+
 
 
 mongoose.connection.once('open', () => {
@@ -26,6 +26,7 @@ mongoose.connection.on('error', (err) => {
 
 
 async function startServer() {
+  await connectDB();
   await loadPlanetsData();
 
   server.listen(PORT, () => {
