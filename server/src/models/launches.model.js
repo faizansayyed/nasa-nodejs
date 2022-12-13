@@ -16,7 +16,7 @@ const launch = {
 };
 
 // launches.set(launch.flightNumber, launch);
-saveLaunch(launch);
+// saveLaunch(launch);
 
 function existsLaunchWithId(launchId) {
   return launches.has(launchId);
@@ -34,8 +34,8 @@ async function saveLaunch(launch) {
   );
 }
 
-function getAllLaunches() {
-  return Array.from(launches.values());
+async function getAllLaunches() {
+  return await launchesDatabase.find({}, { _id: 0, __v: 0 });
 }
 
 function addNewLaunch(launch) {
